@@ -1,0 +1,22 @@
+{
+  "name": "puppeteer-mouse-helper",
+  "version": "1.0.0",
+  "description": "A mouse helper for Puppeteer",
+   "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/my-mouse-helper.git"
+  },
+  "keywords": [
+    "puppeteer",
+    "mouse",
+    "mouse-helper",
+    "javascript"
+  ],
+  "author": "gh05d",
+  "license": "ISC",
+  "homepage": "https://github.com/yourusername/my-mouse-helper#readme"
+}
