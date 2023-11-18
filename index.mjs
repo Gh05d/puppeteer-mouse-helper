@@ -10,15 +10,16 @@ async function installMouseHelper(
   styles = ""
 ) {
   try {
-    await page.evaluateOnNewDocument((backgroundImage) => {
-      // Install mouse helper only for top-level frame.
-      if (window !== window.parent) return;
-      window.addEventListener(
-        "DOMContentLoaded",
-        () => {
-          const box = document.createElement("puppeteer-mouse-pointer");
-          const styleElement = document.createElement("style");
-          styleElement.innerHTML = `
+    await page.evaluateOnNewDocument(
+      (backgroundImage, styles) => {
+        // Install mouse helper only for top-level frame.
+        if (window !== window.parent) return;
+        window.addEventListener(
+          "DOMContentLoaded",
+          () => {
+            const box = document.createElement("puppeteer-mouse-pointer");
+            const styleElement = document.createElement("style");
+            styleElement.innerHTML = `
               puppeteer-mouse-pointer {
                 pointer-events: none;
                 position: absolute;
@@ -35,42 +36,45 @@ async function installMouseHelper(
                 background-image: ${backgroundImage}
             }
             `;
-          document.head.appendChild(styleElement);
-          document.body.appendChild(box);
-          document.addEventListener(
-            "mousemove",
-            (event) => {
-              box.style.left = event.pageX + "px";
-              box.style.top = event.pageY + "px";
-              updateButtons(event.buttons);
-            },
-            true
-          );
-          document.addEventListener(
-            "mousedown",
-            (event) => {
-              updateButtons(event.buttons);
-              box.classList.add("button-" + event.button);
-            },
-            true
-          );
-          document.addEventListener(
-            "mouseup",
-            (event) => {
-              updateButtons(event.buttons);
-              box.classList.remove("button-" + event.button);
-            },
-            true
-          );
+            document.head.appendChild(styleElement);
+            document.body.appendChild(box);
+            document.addEventListener(
+              "mousemove",
+              (event) => {
+                box.style.left = event.pageX + "px";
+                box.style.top = event.pageY + "px";
+                updateButtons(event.buttons);
+              },
+              true
+            );
+            document.addEventListener(
+              "mousedown",
+              (event) => {
+                updateButtons(event.buttons);
+                box.classList.add("button-" + event.button);
+              },
+              true
+            );
+            document.addEventListener(
+              "mouseup",
+              (event) => {
+                updateButtons(event.buttons);
+                box.classList.remove("button-" + event.button);
+              },
+              true
+            );
 
-          function updateButtons(buttons) {
-            for (let i = 0; i < 5; i++)
-              box.classList.toggle("button-" + i, buttons & (1 << i));
-          }
-        },
-        false
-      );
-    }, backgroundImage);
+            function updateButtons(buttons) {
+              for (let i = 0; i < 5; i++)
+                box.classList.toggle("button-" + i, buttons & (1 << i));
+            }
+          },
+          false
+        );
+      },
+      backgroundImage,
+      styles
+    );
   } catch (error) {
     console.error(error);
   }
