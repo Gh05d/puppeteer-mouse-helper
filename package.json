@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/my-mouse-helper.git"
+    "url": "git+https://github.com/Gh05d/puppeteer-mouse-helper"
   },
   "keywords": [
     "puppeteer",
@@ -18,5 +18,8 @@
   ],
   "author": "gh05d",
   "license": "ISC",
-  "homepage": "https://github.com/yourusername/my-mouse-helper#readme"
+  "homepage": "https://github.com/Gh05d/puppeteer-mouse-helper#readme",
+  "bugs": {
+    "url": "https://github.com/Gh05d/puppeteer-mouse-helper/issues"
+  }
 }

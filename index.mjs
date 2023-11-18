@@ -4,9 +4,13 @@
  * @param {string} [backgroundImage] - If you want to use your own cursor
  * @param {string} [styles=""] - Can be used to adjust width and height for example, which are by default 30px
  */
-async function installMouseHelper(page, backgroundImage, styles = "") {
+async function installMouseHelper(
+  page,
+  backgroundImage = "url('https://th.bing.com/th/id/R.1a9e8fe631851070e25b2d48dcab9153?rik=j6y58a4K848oMw&pid=ImgRaw&r=0');",
+  styles = ""
+) {
   try {
-    await page.evaluateOnNewDocument(() => {
+    await page.evaluateOnNewDocument((backgroundImage) => {
       // Install mouse helper only for top-level frame.
       if (window !== window.parent) return;
       window.addEventListener(
@@ -28,10 +32,7 @@ async function installMouseHelper(page, backgroundImage, styles = "") {
                 margin: 0;
                 padding: 0;
                 ${styles}
-                background-image: ${
-                  backgroundImage ||
-                  "url('https://th.bing.com/th/id/R.1a9e8fe631851070e25b2d48dcab9153?rik=j6y58a4K848oMw&pid=ImgRaw&r=0');"
-                }
+                background-image: ${backgroundImage}
             }
             `;
           document.head.appendChild(styleElement);
@@ -69,7 +70,7 @@ async function installMouseHelper(page, backgroundImage, styles = "") {
         },
         false
       );
-    });
+    }, backgroundImage);
   } catch (error) {
     console.error(error);
   }
