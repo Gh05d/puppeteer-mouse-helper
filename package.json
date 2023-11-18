@@ -1,6 +1,6 @@
 {
   "name": "puppeteer-mouse-helper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A mouse helper for Puppeteer",
   "main": "index.mjs",
   "scripts": {
