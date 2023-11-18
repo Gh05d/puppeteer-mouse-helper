@@ -1,4 +1,4 @@
-## Function Documentation
+## Documentation
 
 ### `installMouseHelper(page, backgroundImage, styles)`
 
