@@ -1,4 +1,4 @@
-## Function Documentation
+## Documentation
 
 ### `installMouseHelper(page, backgroundImage, styles)`
 
@@ -18,7 +18,7 @@ This function does not return a value. It modifies the provided Puppeteer page b
 
 ```javascript
 const puppeteer = require("puppeteer");
-const installMouseHelper = require("your-package-name");
+const installMouseHelper = require("puppeteer-mouse-helper");
 
 (async () => {
   const browser = await puppeteer.launch();
